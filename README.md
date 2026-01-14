@@ -113,6 +113,7 @@ A very detailed instructions to install Docker are provide in the below link
     https://docs.docker.com/get-docker/
 
     sudo apt update
+    
     sudo apt install docker.io -y
 
     docker build -t <image_name>:<tag> .
