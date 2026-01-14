@@ -110,14 +110,14 @@ You might create your own images or you might only use those created by others a
 # INSTALL DOCKER
 A very detailed instructions to install Docker are provide in the below link
 
-https://docs.docker.com/get-docker/
+    https://docs.docker.com/get-docker/
 
-sudo apt update
-sudo apt install docker.io -y
+    sudo apt update
+    sudo apt install docker.io -y
 
-docker build -t <image_name>:<tag> .
+    docker build -t <image_name>:<tag> .
 
-docke run -d --name cntr_app -p 8000:8000 <image name>
+    docke run -d --name cntr_app -p 8000:8000 <image name>
 
 # Multistage Build: 
 
