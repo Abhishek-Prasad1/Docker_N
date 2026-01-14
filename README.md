@@ -123,21 +123,21 @@ docke run -d --name cntr_app -p 8000:8000 <image name>
 
 A multistage build in Docker is a feature that allows you to use multiple FROM statements in a single Dockerfile, with each FROM instruction starting a new stage of the build. This technique separates the build environment (which includes compilers, SDKs, and dev dependencies) from the runtime environment (which only needs the compiled application and its minimal runtime dependencies). 
 
-Template: 
-# Stage 1: Builder
-FROM python:3.10-slim AS builder
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install --user -r requirements.txt
+    Template: 
+    # Stage 1: Builder
+    FROM python:3.10-slim AS builder
+    WORKDIR /app
+    COPY requirements.txt .
+    RUN pip install --user -r requirements.txt
 
-# Stage 2: Runner
-FROM python:3.10-slim
-WORKDIR /app
-# Copy only the installed packages
-COPY --from=builder /root/.local /root/.local
-COPY . .
-ENV PATH=/root/.local/bin:$PATH
-CMD ["python", "app.py"]
+    # Stage 2: Runner
+    FROM python:3.10-slim
+    WORKDIR /app
+    # Copy only the installed packages
+    COPY --from=builder /root/.local /root/.local
+    COPY . .
+    ENV PATH=/root/.local/bin:$PATH
+    CMD ["python", "app.py"]
 
 Key Advantages: 
 Reduced Image Size: The primary benefit is a significantly smaller final production image, as all the bulky build tools and intermediate files are excluded.
