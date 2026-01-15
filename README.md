@@ -153,3 +153,21 @@ It’s mainly used in production to improve security, performance, and image siz
 - Important Limitations ⚠️
 You cannot exec into the container
 
+# Networking
+
+Container networking refers to the ability for containers to connect to and communicate with each other, and with non-Docker network services.
+When Docker Engine on Linux starts for the first time, it has a single built-in network called the "default bridge" network. When you run a container without the --network option, it is connected to the default bridge.
+
+<img width="720" height="316" alt="image" src="https://github.com/user-attachments/assets/88b65bd4-890d-4060-be2d-9f6d5e06f867" />
+
+Create custom bridge network
+
+    docker network create secure-network
+    docker run -d --name sampl_cntr --network=secure-network nginx:latest
+    
+Host Networking: Host networking allows a container to share the host’s network stack directly, eliminating network isolation and NAT. This provides better performance but introduces security risks and port conflicts, so it is used only for specific use cases like monitoring or high-performance networking.
+
+Overlay networking - is what allows containers running on different hosts to communicate as if they are on the same network.
+
+This is a distributed, multi-host networking model, mainly used with Docker Swarm and conceptually similar to Kubernetes networking (CNI).
+
